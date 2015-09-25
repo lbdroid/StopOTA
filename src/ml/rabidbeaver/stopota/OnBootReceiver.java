@@ -27,6 +27,10 @@ public class OnBootReceiver extends BroadcastReceiver {
 			
 			final Command command1 = new Command(0,
 					"pm disable com.google.android.gms/.update.SystemUpdateService",
+					"pm disable com.google.android.gms/.update.SystemUpdateService\\$SecretCodeReceiver",
+					"pm disable com.google.android.gms/.update.SystemUpdateService\\$Receiver",
+					"pm disable com.google.android.gms/.update.SystemUpdateService\\$ActiveReceiver",
+					"pm disable com.google.android.gms/.update.SystemUpdateService\\$OtaPolicyReceiver",
 					"rm /data/data/com.google.android.gms/shared_prefs/update.xml",
 					"rm /data/data/com.google.android.gms/app_download/*"){
 				@Override
