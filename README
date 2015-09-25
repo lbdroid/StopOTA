@@ -9,9 +9,10 @@ So what this is; this is a BroadcastReceiver that is triggered by android.intent
 
 Because the OTA service gets re-enabled every reboot, we respond by automatically re-disabling it immediately *after* the boot is completed.
 
-Minor glitch; Google puts newly installed packages into an idiot state, called "disable-until-used". It means that a newly installed receiver for BOOT_COMPLETED won't actually get triggered until the user has actually RUN something in the package manually. We get around this problem by adding an activity called "BullshitActivity. There is no launcher icon to annoy you, but it does need to be started once when the package is installed. This is done by running the command "am start ml.rabidbeaver.stopota/.BullshitActivity" and then rebooting.
+Minor glitch; Google puts newly installed packages into an idiot state, called "disable-until-used". It means that a newly installed receiver for BOOT_COMPLETED won't actually get triggered until the user has actually RUN something in the package manually. We get around this problem by adding an activity called "BullshitActivity. There is no launcher icon to annoy you, but it does need to be started once when the package is installed. This is done by running (as root) the command "am start ml.rabidbeaver.stopota/.BullshitActivity" and then rebooting.
 
-Minor glitch #2: The superuser prompts are not so reliable when you have a lockscreen in the way. First boot with this package installed, you should *immediately* unlock your screen and wait for the prompt. Once it has been authorized, you are good to go and no longer need to worry about unlocking the screen on boot.
+Minor glitch #2 (solved): The superuser prompts are not so reliable when you have a lockscreen in the way. First boot with this package installed, you should *immediately* unlock your screen and wait for the prompt. Once it has been authorized, you are good to go and no longer need to worry about unlocking the screen on boot.
+*** glitch #2 has been solved by adding a root authorization request to BullshitActivity. Now when you start BullshitActivity to enable the receivers, you also add a root authorization.
 
 THIS RECEIVER REQUIRES ROOT!!!!
 
