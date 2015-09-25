@@ -32,7 +32,8 @@ public class OnBootReceiver extends BroadcastReceiver {
 					"pm disable com.google.android.gms/.update.SystemUpdateService\\$ActiveReceiver",
 					"pm disable com.google.android.gms/.update.SystemUpdateService\\$OtaPolicyReceiver",
 					"rm /data/data/com.google.android.gms/shared_prefs/update.xml",
-					"rm /data/data/com.google.android.gms/app_download/*"){
+					"rm /data/data/com.google.android.gms/app_download/*",
+					"rm /cache/update.zip"){
 				@Override
 				public void commandOutput(int id, String line){
 					Log.d(logtag,line);
