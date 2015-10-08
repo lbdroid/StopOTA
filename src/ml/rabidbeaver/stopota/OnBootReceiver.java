@@ -3,6 +3,7 @@ package ml.rabidbeaver.stopota;
 import com.stericson.RootShell.RootShell;
 import com.stericson.RootShell.execution.Command;
 import com.stericson.RootShell.execution.Shell;
+import com.stericson.RootShell.execution.Shell.ShellContext;
 
 import android.app.AlarmManager;
 import android.app.PendingIntent;
@@ -41,7 +42,7 @@ public class OnBootReceiver extends BroadcastReceiver {
 			};
 			
 			try {
-				rshell = RootShell.getShell(true);
+				rshell = RootShell.getShell(true, ShellContext.SYSTEM_APP);
 				rshell.add(command1);
 				Log.d(logtag,"Components disabled.");
 				success=true;

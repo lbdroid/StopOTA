@@ -3,6 +3,7 @@ package ml.rabidbeaver.stopota;
 import com.stericson.RootShell.RootShell;
 import com.stericson.RootShell.execution.Command;
 import com.stericson.RootShell.execution.Shell;
+import com.stericson.RootShell.execution.Shell.ShellContext;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -20,7 +21,7 @@ public class OnAlarmReceiver extends BroadcastReceiver {
 		Log.d(logtag,"Running onReceive");
 		if (RootShell.isAccessGiven()){
 			try {
-				rshell = RootShell.getShell(true);
+				rshell = RootShell.getShell(true, ShellContext.SYSTEM_SERVER);
 			} catch (Exception e1) {}
 			Log.d(logtag,"Root access is granted");
 			
