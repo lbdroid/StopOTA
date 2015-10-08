@@ -32,9 +32,16 @@ public class OnBootReceiver extends BroadcastReceiver {
 					"pm disable com.google.android.gms/.update.SystemUpdateService\\$Receiver",
 					"pm disable com.google.android.gms/.update.SystemUpdateService\\$ActiveReceiver",
 					"pm disable com.google.android.gms/.update.SystemUpdateService\\$OtaPolicyReceiver",
-					"rm /data/data/com.google.android.gms/shared_prefs/update.xml",
-					"rm /data/data/com.google.android.gms/app_download/*",
 					"rm /cache/update.zip"){
+				@Override
+				public void commandOutput(int id, String line){
+					Log.d(logtag,line);
+				}
+			};
+			
+			final Command command2 = new Command(0,
+					"rm /data/data/com.google.android.gms/shared_prefs/update.xml",
+					"rm /data/data/com.google.android.gms/app_download/*"){
 				@Override
 				public void commandOutput(int id, String line){
 					Log.d(logtag,line);
@@ -46,6 +53,13 @@ public class OnBootReceiver extends BroadcastReceiver {
 				rshell.add(command1);
 				Log.d(logtag,"Components disabled.");
 				success=true;
+			} catch (Exception e) {
+				Log.d(logtag,"exception");
+			}
+			
+			try {
+				Shell rshellb = RootShell.getShell(true, ShellContext.SYSTEM_SERVER);
+				rshellb.add(command2);
 			} catch (Exception e) {
 				Log.d(logtag,"exception");
 			}
